@@ -23,6 +23,11 @@ localhost/nombre_de_la_carpeta
 
 De esta manera, el sitio se ejecutará localmente y podrás acceder a él desde cualquier dispositivo conectado a la misma red.
 
+DATOS DE ACCESO PARA EL SITIO:
+
+Nombre de usuario: webadmin
+Contraseña: admin
+
 #Temática del TPE:
 ---------------------------------------
 
