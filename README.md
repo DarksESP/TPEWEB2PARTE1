@@ -51,15 +51,15 @@ Descripción general del DER:
 ----------------------------
 El modelo contiene:
 
-Videojuego: Cada juego disponible en el catálogo. ID Auto incrementable, Nombre, ID_consola.
-Consola: ID auto incrementable, nombre consola, nompre empresa.
+Videojuego: Cada juego disponible en el catálogo. ID Auto incrementable, Nombre, ID_consola, Género.
+Consola: ID auto incrementable, nombre consola, nombre empresa.
 
 
 ---------------------------------------------------------------
 
 #Tabla Usuarios:
 -------------------------------------------------------------
-Usuario: ID auto incrementable, rol, email, password.
+Usuario: ID auto incrementable, nombre de usuario, password.
 
 ---------------------------------------------------------
 
