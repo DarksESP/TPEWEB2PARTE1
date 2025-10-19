@@ -11,6 +11,18 @@ NOMBRE Y APELLIDO: GONZALO RUSSO.
 EMAIL: GONZALORUSSO39@GMAIL.COM
 
 ---------------------------------------
+#GUÍA PARA DESPLEGAR EL SITIO
+---------------------------------------
+
+Para poder visualizar el sitio web en cualquier dispositivo, primero es necesario iniciar los servicios de Apache y MySQL desde el panel de XAMPP.
+Después, abrí el Explorador de archivos y dirigite a la ruta C:/xampp/htdocs, que es donde se almacenan los proyectos del servidor local.
+Dentro de esa carpeta, abrí la consola de Git y ejecutá el comando para clonar el repositorio desde GitHub.
+Una vez completado el proceso, abrí tu navegador web y en la barra de direcciones escribí:
+
+localhost/nombre_de_la_carpeta
+
+De esta manera, el sitio se ejecutará localmente y podrás acceder a él desde cualquier dispositivo conectado a la misma red.
+
 #Temática del TPE:
 ---------------------------------------
 
