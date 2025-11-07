@@ -1,22 +1,24 @@
 <?php
-require_once './Controller/controller.php';
-require_once './Controller/AuthController.php';
+
+//CONTROLLERS
+require_once './Controller/controllerInicio.php';
+require_once './Controller/controllerJuegos.php';
+require_once './Controller/authController.php';
+require_once './Controller/controllerConsola.php';
+
+//ELEMENTOS MIDDLEWARES
 require_once './Middlewares/sessionAuthMiddleware.php';
 require_once './Middlewares/verifyAuthMiddleware.php';
-require_once './libs/Response.php';
-$action = 'juegos';
-
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (!empty($_POST['action'])) {
-        $action = $_POST['action'];
-    }
-} else if (!empty($_GET['action'])) {
-    $action = $_GET['action'];
-} else {
-    $action = 'inicio';
-}
+require_once './libs/response.php';
+//////////////////////////////////////////////////////
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
+
+$action = 'juegos';
+
+// 🔹 Leer la acción de la URL (venga por GET o POST)
+$action = $_GET['action'] ?? 'inicio';
+
 
 $res = new Response();
 
@@ -28,86 +30,142 @@ $params = explode("/", $action);
 
 switch (strtolower($params[0])) {
     case "inicio":
-        $controller = new Controller();
-        $controller->showInicio();
+        $controllerInicio = new ControllerInicio();
+        $controllerInicio->showInicio();
         break;
+    
+
+    //RUTEO JUEGOS
     case "juegos":
         if ((!empty($params[1])) && (is_numeric($params[1]))) {
-            $controller = new Controller();
-            $controller->showJuego($params[1]);
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showJuego($params[1]);
             break;
         } else {
-            $controller = new Controller();
-            $controller->showJuegos();
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showJuegos();
             break;
 
         }
 
+    case "agregar-juego":
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controllerJuegos = new ControllerJuegos();
+        $controllerJuegos->showFormAgregar();
+        break;
+    case "agregar-nuevo-juego":
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controllerJuegos = new ControllerJuegos();
+        $controllerJuegos->agregarJuego();
+        break;
+
+    case "eliminar-juego":
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        if (!empty($params[1]) && is_numeric($params[1])) {
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->eliminarJuego($params[1]);
+            break;
+        } else {
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showJuegos();
+            break;
+        }
+    case "editar-juego":
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        if (!empty($params[1]) && is_numeric($params[1])) {
+
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showFormEditar($params[1]);
+            break;
+        } else {
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showJuegos();
+            break;
+        }
+    case "juego-editado":
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controllerJuegos = new ControllerJuegos();
+        $controllerJuegos->editarJuego();
+        break;
+
+
+    //RUTEO CONSOLA
     case "consolas":
         if (!empty($params[1]) && is_numeric($params[1])) {
-            $controller = new Controller();
-            $controller->showJuegoByConsola($params[1]);
+            $controllerConsolas = new ControllerConsola();
+            $controllerConsolas->showConsola($params[1]);
             break;
+
         } else {
-            $controller = new Controller();
-            $controller->showJuegos();
+
+            $controllerConsolas = new ControllerConsola();
+            $controllerConsolas->showConsolas();
+            break;
         }
-
-
-    case "agregar":
+    case "agregar-consola":
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
-        if ($params[1] == "juego") {
-            $controller = new Controller();
-            $controller->showFormAgregar();
-            break;
+        $controllerConsola = new ControllerConsola();
+        $controllerConsola->showFormAgregarConsola();
+        break;
 
+    case "agregar-nueva-consola":
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controllerConsola = new ControllerConsola();
+        $controllerConsola->agregarConsola();
+        break;
 
-        }
-
-    case "eliminar":
+    case "eliminar-consola":
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
         if (!empty($params[1]) && is_numeric($params[1])) {
-            $controller = new Controller();
-            $controller->eliminarJuego($params[1]);
+            $controllerConsola = new ControllerConsola();
+            $controllerConsola->eliminarConsola($params[1]);
+            break;
+        } else {
+            $controllerConsola = new ControllerConsola();
+            $controllerConsola->showConsolas();
             break;
         }
-    case "editar":
+
+    case "editar-consola":
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
-       if (!empty ($params[1]) && is_numeric($params[1])) {
+        if (!empty($params[1]) && is_numeric($params[1])) {
+            $controllerConsola = new ControllerConsola();
+            $controllerConsola->showFormEditarConsola($params[1]);
+            break;
+        } else {
+            $controllerConsola = new ControllerConsola();
+            $controllerConsola->showConsolas();
+            break;
+        }
 
-           $controller = new Controller();
-           $controller->showFormEditar($params[1]);
-           break;
-       }
-
-       else {
-        $controller = new Controller ();
-        $controller->showJuegos();
+    case "consola-editada":
+        sessionAuthMiddleware($res);
+        verifyAuthMiddleware($res);
+        $controller = new ControllerConsola();
+        $controller->editarConsola();
         break;
-       }
 
-     
 
-       
-       
-     
 
-    case "signup":
-        $controller = new AuthController();
-        $controller->showSignUp();
-        break;
+    //RUTEO USUARIO
 
     case "login":
-        $controller = new AuthController();
-        $controller->showLogin();
+        $controllerAuth = new AuthController();
+        $controllerAuth->showLogin();
         break;
 
     case "logout":
-        $controller = new AuthController();
-        $controller->showLogOut();
+        $controllerAuth = new AuthController();
+        $controllerAuth->showLogOut();
         break;
 
 
@@ -116,8 +174,8 @@ switch (strtolower($params[0])) {
 
 
     default:
-        $controller = new Controller();
-        $controller->showInicio();
+        $controllerInicio = new ControllerInicio();
+        $controllerInicio->showInicio();
         break;
 
 }

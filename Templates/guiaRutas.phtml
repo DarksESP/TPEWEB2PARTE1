@@ -1,0 +1,94 @@
+<section class="container py-4">
+  <h2 class="h4 mb-3">Mapa Guía de URLs</h2>
+  <ul class="list-unstyled">
+    <li>
+      <a href="<?php echo BASE_URL; ?>inicio" class="fw-bold">Inicio</a>
+      <span class="d-block fs-6 text-muted">Página principal del sitio</span>
+    </li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>juegos" class="fw-bold">/juegos</a>
+      <span class="d-block fs-6 text-muted">Listado completo de juegos</span>
+    </li>
+
+    <li>
+      <a href="<?php echo BASE_URL; ?>juegos/124" class="fw-bold">/juegos/&lt;id 124&gt;</a>
+      <span class="d-block fs-6 text-muted">Detalle de un juego específico</span>
+    </li>
+     <li>
+      <a href="<?php echo BASE_URL; ?>consolas" class="fw-bold">/consolas</a>
+      <span class="d-block fs-6 text-muted">Listado completo de consolas</span>
+    </li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>consolas/14" class="fw-bold">/consolas/&lt;id 14&gt;</a>
+      <span class="d-block fs-6 text-muted">Detalle de la consola de id 14</span>
+    </li>
+
+    <li>
+      <a href="<?php echo BASE_URL; ?>login" class="fw-bold">/login</a>
+      <span class="d-block fs-6 text-muted">Login para iniciar sesión</span>
+    </li>
+  </ul>
+
+  <!-- Aviso para usuarios logueados -->
+  <div class="alert alert-warning mt-4" role="alert">
+    ⚠️ Las siguientes rutas son de <strong>uso exclusivo para usuarios con sesión iniciada</strong>.
+  </div>
+
+  <ul class="list-unstyled">
+
+
+
+    <li>
+      <a href="<?php echo BASE_URL; ?>agregar-juego" class="fw-bold">/agregar-juego</a>
+      <span class="d-block fs-5 text-dark">Acceder al formulario para agregar un nuevo juego</span>
+    </li>
+    <li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>agregar-nuevo-juego" class="fw-bold">/agregar-nuevo-juego</a>
+      <span class="d-block fs-5 text-dark">Esta será la url cuando se envie el form de agregar juego</span>
+    </li>
+    <li></li>
+    <a href="<?php echo BASE_URL; ?>eliminar-juego/133" class="fw-bold">/eliminar-juego/133</a>
+    <span class="d-block fs-5 text-dark">Eliminar el juego con ID 133</span>
+    </li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>editar-juego/128" class="fw-bold">/editar-juego/128</a>
+      <span class="d-block fs-5 text-dark">Acceder al formulario para editar el juego con ID 128</span>
+    </li>
+
+    <li>
+      <a href="<?php echo BASE_URL; ?>juego-editado" class="fw-bold">/juego-editado</a>
+      <span class="d-block fs-5 text-dark">Esta será la url cuando se envie el form de editar juego</span>
+    </li>
+
+
+    <li>
+      <a href="<?php echo BASE_URL; ?>agregar-consola" class="fw-bold">/agregar-consola</a>
+      <span class="d-block fs-5 text-dark">Acceder al formulario para agregar una nueva consola</span>
+    </li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>agregar-nueva-consola" class="fw-bold">/agregar-nueva-consola</a>
+      <span class="d-block fs-5 text-dark">Esta será la url que aparezca cuando se envia el form de agregar
+        consola</span>
+    </li>
+
+    <li>
+      <a href="<?php echo BASE_URL; ?>eliminar-consola/15" class="fw-bold">/eliminar-consola/id 15</a>
+      <span class="d-block fs-5 text-dark">Eliminar consola de id 15</span>
+    </li>
+
+    <li>
+      <a href="<?php echo BASE_URL; ?>editar-consola/19" class="fw-bold">/editar-consola/id 19</a>
+      <span class="d-block fs-5 text-dark">Acceder al formulario para editar la consola de id 19</span>
+    </li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>consola-editada" class="fw-bold">/consola-editada</a>
+      <span class="d-block fs-5 text-dark">Esta será la url que aparezca cuando se envia el form de editar
+        consola</span>
+    </li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>logout" class="fw-bold">/logout</a>
+      <span class="d-block fs-6 text-muted">Logout para cerrar sesión</span>
+    </li>
+    </ul>
+</section>

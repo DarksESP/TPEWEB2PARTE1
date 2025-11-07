@@ -12,9 +12,5 @@ class AuthView {
         require_once './Templates/footer.phtml';
     }
 
-    public function showSignUp($error = '') {
-           require_once './Templates/head.phtml';
-            require './Templates/formRegistrar.phtml';
-          
-    }
+   
 }

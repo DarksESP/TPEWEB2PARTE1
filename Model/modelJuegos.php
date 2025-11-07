@@ -1,6 +1,6 @@
 <?php
 require_once './config.php';
-class Model
+class ModelJuegos
 {
     protected $db;
 
@@ -51,7 +51,7 @@ class Model
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function getJuego($id)
+    public function getJuegoByID($id)
     {
         $query = $this->db->prepare('SELECT * FROM juego WHERE id = ?');
         $query->execute([$id]);
@@ -67,12 +67,7 @@ class Model
 
 
 
-    public function getConsolas()
-    {
-        $query = $this->db->prepare('SELECT * FROM consola');
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_OBJ);
-    }
+   
   private function uploadImage($image){
    
         $target = './img/juego/' . uniqid() . "." . strtolower(pathinfo($image['name'], PATHINFO_EXTENSION));  
@@ -125,27 +120,7 @@ class Model
         }
     }
 
-    public function getUsuarioByEmail($email)
-    {
-        $query = $this->db->prepare("SELECT * FROM usuario WHERE email = ?");
-        $query->execute([$email]);
-        return $query->fetchAll(PDO::FETCH_OBJ);
-    }
-
-    public function registrarUsuario($email, $password)
-    {
-        if (!empty($this->getUsuarioByEmail($email))) {
-            $query = $this->db->prepare("INSERT INTO usuario ($email, $password) VALUES (?,?)");
-            $query->execute([$email, $password]);
-
-
-        } else {
-            echo "Acceso denegado";
-        }
-
-
-
-    }
+   
 }
 
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2025 a las 04:01:35
+-- Tiempo de generación: 07-11-2025 a las 04:40:06
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -30,16 +30,23 @@ SET time_zone = "+00:00";
 CREATE TABLE `consola` (
   `id` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `empresa` varchar(50) NOT NULL
+  `empresa` varchar(50) NOT NULL,
+  `imagen` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `consola`
 --
 
-INSERT INTO `consola` (`id`, `nombre`, `empresa`) VALUES
-(1, 'PS3', 'SONY'),
-(2, 'XBOX', 'MICROSOFT');
+INSERT INTO `consola` (`id`, `nombre`, `empresa`, `imagen`) VALUES
+(15, 'PS4', 'SONY', NULL),
+(16, 'NINTENDO SWITCH', 'NINTENDO', NULL),
+(18, 'XBOX 360', 'MICROSOFT', NULL),
+(19, 'PS8HGHJ', 'SONY', NULL),
+(20, 'PS5 ', 'SONY', NULL),
+(21, 'PS2 ', 'SONY', NULL),
+(25, 'MEGA DRIVE', 'SEGA', NULL),
+(28, 'PS8', 'SONY', NULL);
 
 -- --------------------------------------------------------
 
@@ -60,7 +67,12 @@ CREATE TABLE `juego` (
 --
 
 INSERT INTO `juego` (`id`, `nombre`, `id_consola`, `imagen`, `genero`) VALUES
-(90, 'BLACK OPS 2', 1, './img/juego/68f442958abb1.jpeg', 'SHOOTER');
+(124, 'BLACK OPS 1', 18, './img/juego/690c3284d5dc9.jpg', 'SHOOTER'),
+(125, 'ASSASSINS CREED 4 BLACK FLAG', 15, NULL, 'AVENTURA'),
+(128, 'CALL OF DUTY BLACK OPS 3', 15, NULL, 'SHOOTER'),
+(129, 'BLOODBORNE 2', 20, NULL, 'RPG'),
+(133, 'GTA 5', 15, NULL, 'ACCION'),
+(134, 'GTA 6', 20, NULL, 'ACCION');
 
 -- --------------------------------------------------------
 
@@ -79,7 +91,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id`, `nombre`, `passwordd`) VALUES
-(1, 'webadmin', '$2y$10$jhAiFnD0o5vqVC1MW3Dubua5I51NVZRj4rzU3G8pY8s3xqsQm40W.');
+(5, 'webadmin', '$2y$10$6Ge281/ahvQXqKlraqhHPuA7xIQ.YwO4o7uN465K/w58B7jv/BtCG');
 
 --
 -- Índices para tablas volcadas
@@ -112,19 +124,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `consola`
 --
 ALTER TABLE `consola`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `juego`
 --
 ALTER TABLE `juego`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

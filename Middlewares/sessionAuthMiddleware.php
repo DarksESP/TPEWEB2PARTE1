@@ -1,5 +1,6 @@
 <?php
    function sessionAuthMiddleware($res) {
+   
     session_start(); // Inicia la sesión para poder leer $_SESSION
     
     if(isset($_SESSION['ID_USER'])) { // Verifica si hay un usuario logueado

@@ -12,8 +12,34 @@
     <header>
         <h1>TIENDA ONLINE</h1>
         <div>
-            <a class='btn btn-danger'  href='?action=logout/'>Cerrar Sesion</a>
-             <a class='btn btn-primary'  href='?action=login/'>Iniciar Sesion</a>
-             <a class='btn btn-success' href='?action=signup/'>Registrarte</a>
+            <a class='btn btn-danger'  href="<?php echo BASE_URL ?>logout">Cerrar Sesion</a>
+             <a class='btn btn-primary'  href="<?php echo BASE_URL ?>login">Iniciar Sesion</a>
+            
         </div>
 </header>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<?php echo BASE_URL; ?>">Mi Tienda Gamer</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo BASE_URL; ?>inicio">Inicio</a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo BASE_URL; ?>juegos">Juegos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<?php echo BASE_URL; ?>consolas">Consolas</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
