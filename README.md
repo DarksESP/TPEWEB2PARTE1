@@ -10,6 +10,10 @@ EMAIL: valea.190455@gmail.com
 NOMBRE Y APELLIDO: GONZALO RUSSO. 
 EMAIL: GONZALORUSSO39@GMAIL.COM
 
+#XAMPP INSTALACIÓN DEL PROYECTO 
+---------------------------------------
+Primero, instalá XAMPP y abrí su Panel de Control. Arrancá Apache para que tu servidor web funcione y MySQL si tu proyecto necesita base de datos. Todo lo que quieras que se muestre en el navegador debe estar dentro de la carpeta htdocs de XAMPP, que es la raíz de tu servidor local. Si todavía no tenés tu proyecto, podés clonarlo desde GitHub usando git clone dentro de htdocs. Una vez que tengas la carpeta de tu proyecto, podés actualizarla en cualquier momento con git pull para traer los últimos cambios del repositorio remoto. Después abrí el navegador y escribí http://localhost/nombre-del-proyecto para ver tu aplicación funcionando. El menú de navegación (nav) y todos los archivos se cargarán automáticamente según cómo los tengas en tu proyecto.
+
 ---------------------------------------
 #Temática del TPE:
 ---------------------------------------
