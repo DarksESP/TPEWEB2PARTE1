@@ -35,7 +35,8 @@ Descripción general del DER:
 El modelo contiene:
 
 Videojuego: Cada juego disponible en el catálogo. ID Auto incrementable, Nombre, ID_consola, descripcion, imagen, audio.
-Consola: ID auto incrementable, nombre consola, nompre empresa, imagen.
+
+Consola: ID auto incrementable, nombre consola, nombre empresa, imagen.
 
 
 ---------------------------------------------------------------
