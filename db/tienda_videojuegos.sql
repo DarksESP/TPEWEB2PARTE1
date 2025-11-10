@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-11-2025 a las 04:40:06
+-- Tiempo de generación: 10-11-2025 a las 07:32:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -39,14 +39,13 @@ CREATE TABLE `consola` (
 --
 
 INSERT INTO `consola` (`id`, `nombre`, `empresa`, `imagen`) VALUES
-(15, 'PS4', 'SONY', NULL),
-(16, 'NINTENDO SWITCH', 'NINTENDO', NULL),
-(18, 'XBOX 360', 'MICROSOFT', NULL),
-(19, 'PS8HGHJ', 'SONY', NULL),
-(20, 'PS5 ', 'SONY', NULL),
-(21, 'PS2 ', 'SONY', NULL),
-(25, 'MEGA DRIVE', 'SEGA', NULL),
-(28, 'PS8', 'SONY', NULL);
+(25, 'XBOX ONE X', 'MICROSOFT', './img/juego/690ed84998796.png'),
+(32, 'PS2', 'PLAYSTATION', './img/juego/690ed88c188ad.png'),
+(33, 'PS3', 'PLAYSTATION', './img/juego/690ed8b5ec276.png'),
+(34, 'MEGA DRIVE', 'SEGA', './img/juego/690ed91768bb3.jpg'),
+(36, 'PS4', 'SONY', './img/juego/690ff6148e62a.jpg'),
+(37, 'PS5', 'PLAYSTATION', './img/juego/690ffc2990924.jpg'),
+(44, 'XXVB', 'ROCKSTAR GAMES', NULL);
 
 -- --------------------------------------------------------
 
@@ -59,20 +58,20 @@ CREATE TABLE `juego` (
   `nombre` varchar(50) NOT NULL,
   `id_consola` int(11) NOT NULL,
   `imagen` varchar(255) DEFAULT NULL,
-  `genero` varchar(300) NOT NULL
+  `genero` varchar(300) NOT NULL,
+  `descripcion` text NOT NULL,
+  `audio_url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `juego`
 --
 
-INSERT INTO `juego` (`id`, `nombre`, `id_consola`, `imagen`, `genero`) VALUES
-(124, 'BLACK OPS 1', 18, './img/juego/690c3284d5dc9.jpg', 'SHOOTER'),
-(125, 'ASSASSINS CREED 4 BLACK FLAG', 15, NULL, 'AVENTURA'),
-(128, 'CALL OF DUTY BLACK OPS 3', 15, NULL, 'SHOOTER'),
-(129, 'BLOODBORNE 2', 20, NULL, 'RPG'),
-(133, 'GTA 5', 15, NULL, 'ACCION'),
-(134, 'GTA 6', 20, NULL, 'ACCION');
+INSERT INTO `juego` (`id`, `nombre`, `id_consola`, `imagen`, `genero`, `descripcion`, `audio_url`) VALUES
+(184, 'WATCH DOGS ', 33, './img/juego/69115520ea7c9.jpg', 'ACCION', 'Watch Dogs sigue a Aiden Pearce, un hacker experto cuya vida cambia drásticamente cuando un ataque violento termina con la muerte de su sobrina. Movido por la venganza, Aiden se adentra en la ciudad de Chicago, una metrópolis controlada por ctOS, un sistema central que gestiona la infraestructura, el tráfico, la seguridad y las comunicaciones de la ciudad.\r\n\r\nUsando sus habilidades de hackeo, Aiden puede manipular cámaras, semáforos, dispositivos electrónicos y sistemas bancarios para espiar, sabotear y derrotar a sus enemigos. La historia combina acción, sigilo y dilemas morales, mostrando cómo la tecnología puede ser tanto una herramienta de poder como un arma peligrosa.', 'uploads/audios/audio_69115520e9b2a8.03153405.mp3'),
+(185, 'DARK SIDERS 2', 36, './img/juego/691155a7ade07.jpg', 'RPG', 'En Darksiders II, controlás a Muerte (Death), uno de los Cuatro Jinetes del Apocalipsis, quien busca limpiar el nombre de su hermano Guerra, acusado injustamente de desencadenar el Apocalipsis en el primer juego.\r\n\r\nLa historia te lleva a través de un mundo oscuro y devastado, lleno de enemigos sobrenaturales, mazmorras, y ciudades antiguas. Mientras Muerte busca reunir pistas y enfrentarse a poderosos adversarios, explora secretos que revelan la corrupción y el conflicto entre el Cielo, el Infierno y la Tierra. El juego combina acción intensa, exploración y resolución de acertijos, ofreciendo una narrativa épica sobre justicia, sacrificio y destino.', 'uploads/audios/audio_691155a7ad0478.21531037.mp3'),
+(187, 'DARK SOULS 3', 37, './img/juego/691157e4bd164.jpg', 'RPG', 'En Dark Souls III, el jugador encarna al “Ashen One”, un guerrero resucitado destinado a unir las llamas y enfrentar el inevitable fin del mundo. Ambientado en el reino decadente de Lothric, la historia gira en torno al ciclo eterno de luz y oscuridad, donde reyes y héroes caídos deben ser enfrentados para restaurar o destruir el equilibrio.\r\n\r\nA lo largo del juego, el jugador explora un mundo oscuro y peligroso, lleno de enemigos mortales, jefes colosales y secretos escondidos. La narrativa se transmite principalmente a través del ambiente, los diálogos crípticos y los objetos del juego, ofreciendo una experiencia inmersiva y desafiante sobre sacrificio, destino y la lucha contra la decadencia.', 'uploads/audios/audio_691157e4b7aad4.24614538.mp3'),
+(196, 'VHVH', 34, NULL, 'VHV', 'nmmn', NULL);
 
 -- --------------------------------------------------------
 
@@ -124,13 +123,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `consola`
 --
 ALTER TABLE `consola`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `juego`
 --
 ALTER TABLE `juego`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
