@@ -28,7 +28,7 @@ DiagramaOk.jpeg
 ## 🎮 Diagrama de base de datos
 
  
-![Diagrama ER](./DiagramaOk.jpeg)
+![Diagrama ER](./DIAGRAMADER-.jpeg)
 
 Descripción general del DER:
 ----------------------------
