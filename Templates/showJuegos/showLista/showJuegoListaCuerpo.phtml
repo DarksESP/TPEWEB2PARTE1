@@ -1,0 +1,42 @@
+
+  <?php
+      echo "<tr>";
+      echo "<th> " . $juego->id . "</th>";
+  
+    echo '<th><a href="' . BASE_URL . 'juegos/' . $juego->id . '">' . htmlspecialchars($juego->nombre) . '</a></th>';
+
+      echo "<th>" . $juego->genero . "</th>";
+      foreach ($consolas as $consola) {
+        if ($consola->id == $juego->id_consola) {
+            echo "<th>" . $consola->nombre. "</th>";
+
+        }
+      }
+      if (!empty($juego->imagen)) {
+    echo '<th><img src="' . BASE_URL . ltrim($juego->imagen, './') . '" alt="' . htmlspecialchars($juego->nombre) . '" width="120"></th>';
+} else {
+    echo '<th>Sin imagen</th>';
+}
+
+
+   if (isset($_SESSION["ID_USER"])) {
+
+        echo "<td><a  class='btn btn-danger' href=" . BASE_URL . 'eliminar-juego/' . $juego->id . ">Eliminar</a></td>";
+        echo "<td><a class='btn btn-primary' href=" . BASE_URL . 'editar-juego/' . $juego->id . " >Editar</a></td>";
+      }
+
+   
+     
+
+       echo "</tr>";
+    
+   ?>
+
+    
+
+  </tbody>
+   
+</table>
+
+
+     

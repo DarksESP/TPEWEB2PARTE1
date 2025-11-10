@@ -13,36 +13,53 @@ class ModelJuegos
         );
         $this->_deploy();
     }
-    private function _deploy()
-    {
-        $query = $this->db->query('SHOW TABLES');
-        $tables = $query->fetchAll();
-        if (count($tables) == 0) {
-            $sql = <<<END
-        CREATE TABLE usuario (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            email VARCHAR(255) NOT NULL,
-            password VARCHAR(255) NOT NULL
-        );
+  private function _deploy()
+{
+    $query = $this->db->query('SHOW TABLES');
+    $tables = $query->fetchAll(PDO::FETCH_COLUMN);
 
-        CREATE TABLE consola (
+    // ---------------- Usuario ----------------
+    if (!in_array('usuario', $tables)) {
+        $sqlUsuario = "CREATE TABLE usuario (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            nombre VARCHAR(100) NOT NULL
-        );
+            nombre VARCHAR(255) NOT NULL,
+            passwordd VARCHAR(255) NOT NULL
+        ) ENGINE=InnoDB;";
+        $this->db->exec($sqlUsuario);
 
-        CREATE TABLE juego (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            nombre VARCHAR(100) NOT NULL,
-            id_consola INT,
-            FOREIGN KEY (id_consola) REFERENCES consola(id)
-        );
-        END;
-
-            $this->db->exec($sql);
-        }
+        // Crear usuario por defecto
+        $nombreAdmin = 'webadmin';
+        $passwordAdmin = password_hash('admin', PASSWORD_DEFAULT);
+        $insertAdmin = $this->db->prepare("INSERT INTO usuario (nombre, passwordd) VALUES (?, ?)");
+        $insertAdmin->execute([$nombreAdmin, $passwordAdmin]);
     }
 
+    // ---------------- Consola ----------------
+    if (!in_array('consola', $tables)) {
+        $sqlConsola = "CREATE TABLE consola (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            nombre VARCHAR(100) NOT NULL,
+            empresa VARCHAR(100) NOT NULL,
+            imagen VARCHAR(255)
+        ) ENGINE=InnoDB;";
+        $this->db->exec($sqlConsola);
+    }
 
+    // ---------------- Juego ----------------
+    if (!in_array('juego', $tables)) {
+        $sqlJuego = "CREATE TABLE juego (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            nombre VARCHAR(100) NOT NULL,
+            genero VARCHAR(100) NOT NULL,
+            descripcion TEXT,
+            imagen VARCHAR(255),
+            audio_url VARCHAR(255),
+            id_consola INT,
+            FOREIGN KEY (id_consola) REFERENCES consola(id) ON DELETE SET NULL
+        ) ENGINE=InnoDB;";
+        $this->db->exec($sqlJuego);
+    }
+}
 
     public function getJuegos()
     {
@@ -76,22 +93,22 @@ class ModelJuegos
     }
 
 
+    
 
-    public function agregarJuego($nombre, $id_consola,$genero, $imagen = null)
-    {
-         $pathImg = null;
-        if ($imagen) {
-            $pathImg = $this->uploadImage($imagen);
+public function agregarJuego($nombre, $consola, $genero, $descripcion, $imagen = null, $audio = null)
+{
+    $query = $this->db->prepare("INSERT INTO juego (nombre, id_consola, genero, descripcion, imagen, audio_url) VALUES (?, ?, ?, ?, ?, ?)");
+    $nombre1 = strtoupper($nombre);
+    $genero1 = strtoupper($genero);
+    $params = [$nombre1, $consola, $genero1, $descripcion, null, null];
 
-        }
-        $query = $this->db->prepare("INSERT INTO juego (nombre, id_consola, genero, imagen) VALUES (?,?, ?,?)");
-        $nombre1 = strtoupper($nombre);
-        $genero1 = strtoupper($genero);
+    if ($imagen)
+        $params[4] = $this->uploadImage($imagen); // o como manejes tu imagen
+    if ($audio)
+        $params[5] = $audio;
 
-       
-
-        $query->execute([$nombre1, $id_consola, $genero1, $pathImg]);
-    }
+     $query->execute($params);
+}
 
     public function eliminarJuego($id)
     {
@@ -99,26 +116,42 @@ class ModelJuegos
         $query->execute([$id]);
     }
 
-    public function editarJuego($nombre, $id_consola, $genero, $id_juego, $imagen = null)
-    {
-         $pathImg = null;
-        if ($imagen) {
-            $pathImg = $this->uploadImage($imagen);
-            $query = $this->db->prepare("UPDATE juego SET nombre = ?, id_consola = ?, genero =?, imagen =?  WHERE id = ?");
-            $nombre1 = strtoupper($nombre);
-             $genero1 = strtoupper($genero);
-            $query->execute([$nombre1, $id_consola,$genero1, $pathImg, $id_juego]);
+    public function editarJuego($nombre, $id_consola, $genero, $descripcion, $id_juego, $imagen = null, $audioURL = null)
+{
+    $nombre1 = strtoupper($nombre);
+    $genero1 = strtoupper($genero);
 
-        }
-
-        else {
-            $query= $this->db->prepare("UPDATE juego SET nombre=? , id_consola= ?, genero =?  WHERE id =?");
-             $nombre1 = strtoupper($nombre);
-              $genero1 = strtoupper($genero);
-            $query->execute([$nombre1, $id_consola,$genero1, $id_juego]);
-
-        }
+    // -----------------------------
+    // Procesar imagen si existe
+    // -----------------------------
+    $pathImg = null;
+    if ($imagen) {
+        $pathImg = $this->uploadImage($imagen);
     }
+
+    // -----------------------------
+    // Construir consulta dinámica
+    // -----------------------------
+    $campos = "nombre = ?, id_consola = ?, genero = ?, descripcion = ?";
+    $params = [$nombre1, $id_consola, $genero1, $descripcion];
+
+    if ($pathImg !== null) {
+        $campos .= ", imagen = ?";
+        $params[] = $pathImg;
+    }
+
+    if ($audioURL !== null) {
+        $campos .= ", audio_url = ?";
+        $params[] = $audioURL;
+    }
+
+    $params[] = $id_juego;
+
+    $query = $this->db->prepare("UPDATE juego SET $campos WHERE id = ?");
+    $query->execute($params);
+}
+
+   
 
    
 }

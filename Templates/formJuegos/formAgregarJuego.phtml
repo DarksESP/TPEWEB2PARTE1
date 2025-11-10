@@ -1,0 +1,59 @@
+<form action="<?php echo BASE_URL ?>agregar-juego"  method="POST"enctype="multipart/form-data">
+    <fieldset>
+        <legend>Agregue un juego</legend>
+
+        <div class="mb-3">
+            <label for="nombre">Nombre</label>
+            <input class="form-control" type="text" name="nombre" required>
+        </div>
+         <div class="mb-3">
+            <label for="genero">Género:</label>
+            <input class="form-control" type="text" name="genero" required>
+        </div>
+       
+
+
+        <div class="mb-3">
+            <select class="form-control" name="id_consola">
+                <?php
+                foreach ($consolas as $consola) {
+                    echo "<option value='$consola->id'>$consola->nombre</option>";
+                }
+                ?>
+            </select>
+        </div>
+        <div class="mb-3">
+    <label for="descripcion" class="form-label">Descripción del juego</label>
+    <textarea 
+        class="form-control" 
+        id="descripcion" 
+        name="descripcion" 
+        rows="5" 
+        placeholder="Escribe aquí la descripción del juego..." 
+        required></textarea>
+</div>
+
+<div class="formUpload">
+
+   <div class="input-group">
+    <label for="audioFile">🎧 Subir audio (MP3)</label>
+    <input id="audioFile" name="audio" type="file" accept="audio/*">
+  </div>
+
+  <div class="input-group">
+    <label for="imageToUpload">🖼️ Subir imagen </label>
+    <input type="file" name="imagen" id="imageToUpload" accept="image/*">
+  </div>
+</div>
+
+        <div>
+
+            <button class="btn btn-success" type="submit">ENVIAR</button>
+        </div>
+
+
+    </fieldset>
+</form>
+
+<br>
+<br>

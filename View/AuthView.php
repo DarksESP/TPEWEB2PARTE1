@@ -8,7 +8,7 @@ class AuthView {
 
     public function showLogin($error = '') {
         require_once './Templates/head.phtml';
-        require_once './Templates/formIniciarSesion.phtml';
+        require_once './Templates/formUser/formIniciarSesion.phtml';
         require_once './Templates/footer.phtml';
     }
 

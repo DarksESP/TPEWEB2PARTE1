@@ -32,7 +32,8 @@ class ControllerConsola
     public function showConsola($id)
     {
         $consola = $this->modelConsolas->getConsolaByID($id);
-
+        $mensajes = [];
+        
         if (empty($consola)) {
             $this->viewErrores->showMensaje("404 NOT FOUND -------");
         } else {
@@ -97,10 +98,12 @@ class ControllerConsola
     public function eliminarConsola($id)
     {
         $consola = $this->modelConsolas->getConsolaByID($id);
-
+$mensajes = []; // inicializar siempre como array
         if (empty($consola)) {
-            $this->viewErrores->showMensaje("404 NOT FOUND, CONSOLA NO ENCONTRADA");
+            $mensajes = "404 NOT FOUND, CONSOLA NO ENCONTRADA";
+            $this->viewErrores->showMensaje($mensajes);
         } else {
+         
             $this->modelConsolas->eliminarConsolaByID($id);
             $this->showConsolas();
         }

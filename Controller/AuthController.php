@@ -42,7 +42,7 @@ class AuthController
 
     // Si ya hay un usuario logueado, lo redirigimos al home
     if (isset($_SESSION['ID_USER'])) {
-        $this->viewErrores->showMensaje("No puedes iniciar sesión más de una vez, error 400");
+        $this->viewErrores->showMensaje("No puedes iniciar sesión más de una vez");
     }
 
   else if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -69,10 +69,12 @@ class AuthController
                    $mensaje = "INICIO DE SESIÓN EXITOSO";
                     $juegos =$this->modelJuegos->getJuegos();
                     $consolas = $this->modelConsolas->getConsolas();
-                    $this->viewJuegos->showJuegos($juegos, $consolas, $mensaje );
+                    $this->viewErrores->showMensaje($mensaje);
+                    $this->viewJuegos->showJuegos($juegos, $consolas );
                 } else {
-
-                    return $this->viewAuth->showLogin('DATOS INCORRECTOS');
+                    $mensaje = "DATOS INCORRECTOS";
+                    $this->viewErrores->showMensaje($mensaje);
+                    return $this->viewAuth->showLogin();
                 }
             }
 
@@ -95,7 +97,8 @@ class AuthController
 
     // Si NO hay usuario logueado, mostramos mensaje y salimos
     if (!isset($_SESSION['ID_USER'])) {
-        $this->viewErrores->showMensaje("No se ha iniciado sesión. No puedes cerrar sesión si no hay usuario logueado." );
+        $mensaje  ="No se ha iniciado sesión. No puedes cerrar sesión si no hay usuario logueado.";
+        $this->viewErrores->showMensaje($mensaje );
         return; // importante para que no siga ejecutando el resto
     }
 
@@ -103,7 +106,9 @@ class AuthController
     session_destroy();
 
     // Redirigimos a la vista de login con mensaje
-    $this->viewAuth->showLogin("SESIÓN CERRADA CON ÉXITO. ¿DESEA INICIAR SESIÓN?");
+    $mensaje ="SESIÓN CERRADA CON ÉXITO. ¿DESEA INICIAR SESIÓN?";
+    $this->viewErrores->showMensaje ($mensaje);
+    $this->viewAuth->showLogin();
 }
 
 }

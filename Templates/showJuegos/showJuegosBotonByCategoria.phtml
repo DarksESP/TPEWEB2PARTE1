@@ -1,0 +1,27 @@
+
+   
+  
+
+
+<?php
+foreach($juegos as $juego) {
+    $valor = $juego->id_consola;
+}
+?>
+
+
+
+<div class="d-flex justify-content-center gap-2 my-3">
+    <!-- Botón Game Card -->
+    <a href="<?= BASE_URL . 'juegos-categoria/' . $valor ?>" class="btn btn-primary">
+        Game Card
+    </a>
+
+    <!-- Botón Lista -->
+    <a href="<?= BASE_URL . 'juegos-lista-categoria/' . $valor ?>" class="btn btn-secondary">
+        Lista
+    </a>
+</div>
+
+
+

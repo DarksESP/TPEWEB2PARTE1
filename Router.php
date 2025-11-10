@@ -47,19 +47,53 @@ switch (strtolower($params[0])) {
             break;
 
         }
+    case "juegos-lista":
+        if (!empty($params[1]) && is_numeric($params[1])) {
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showJuegoLista($params[1]);
+            break;
+        }
+
+        else {
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showJuegosLista();
+            break;
+            
+
+        }
+    case "juegos-lista-categoria":
+        if (!empty ($params[1]) && is_numeric($params[1])) {
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showJuegosListaByCategoria($params[1]);
+            break;
+
+        }
+
+        else {
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showJuegosLista();
+            break;
+        }
+    case "juegos-categoria":
+        if (!empty($params[1]) && is_numeric($params[1])) {
+            $controllerJuegos = new ControllerJuegos();
+            $controllerJuegos->showJuegosByCategoria($params[1]);
+            break;
+        }
+
+        else {
+            $controller = new ControllerJuegos();
+            $controllerJuegos->showJuegos();
+            break;
+        }
 
     case "agregar-juego":
         sessionAuthMiddleware($res);
         verifyAuthMiddleware($res);
         $controllerJuegos = new ControllerJuegos();
-        $controllerJuegos->showFormAgregar();
+        $controllerJuegos->showAgregarJuego();
         break;
-    case "agregar-nuevo-juego":
-        sessionAuthMiddleware($res);
-        verifyAuthMiddleware($res);
-        $controllerJuegos = new ControllerJuegos();
-        $controllerJuegos->agregarJuego();
-        break;
+   
 
     case "eliminar-juego":
         sessionAuthMiddleware($res);
@@ -86,12 +120,7 @@ switch (strtolower($params[0])) {
             $controllerJuegos->showJuegos();
             break;
         }
-    case "juego-editado":
-        sessionAuthMiddleware($res);
-        verifyAuthMiddleware($res);
-        $controllerJuegos = new ControllerJuegos();
-        $controllerJuegos->editarJuego();
-        break;
+   
 
 
     //RUTEO CONSOLA

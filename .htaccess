@@ -2,7 +2,6 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /TPEWEB2PARTE2COPIAX/
 
     # Si el archivo o carpeta existe, no reescribas
     RewriteCond %{REQUEST_FILENAME} !-f

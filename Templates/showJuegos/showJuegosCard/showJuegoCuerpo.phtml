@@ -1,0 +1,76 @@
+
+
+<section class="container py-4">
+    <div class="card mb-4 shadow-sm" style="max-width: 800px; margin:auto;">
+        <div class="row g-0">
+            <!-- Imagen del juego -->
+            <div class="col-md-4">
+                <?php if (!empty($juego->imagen)) : ?>
+                    <img src="<?= BASE_URL . ltrim($juego->imagen, './') ?>" class="img-fluid rounded-start" alt="<?= htmlspecialchars($juego->nombre) ?>">
+                <?php else : ?>
+                    <img src="<?= BASE_URL ?>img/default-game.png" class="img-fluid rounded-start" alt="Sin imagen">
+                <?php endif; ?>
+            </div>
+            
+            <!-- Info del juego -->
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title"><?= htmlspecialchars($juego->nombre) ?></h2>
+                    <p class="card-text"><strong>Género:</strong> <?= htmlspecialchars($juego->genero) ?></p>
+                    <p class="card-text"><strong>Consola:</strong>
+                        <?php 
+                        foreach ($consolas as $consola) {
+                           if ($consola->id == $juego->id_consola) {
+             
+
+           echo htmlspecialchars($consola->nombre); 
+                               
+                            }
+                        }
+                        ?>
+                    </p>
+
+                    <?php if (isset($_SESSION["ID_USER"])) : ?>
+                        <a href="<?= BASE_URL ?>editar-juego/<?= $juego->id ?>" class="btn btn-primary me-2">Editar</a>
+                        <a href="<?= BASE_URL ?>eliminar-juego/<?= $juego->id ?>" class="btn btn-danger">Eliminar</a>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            
+                   <!-- Descripción del juego -->
+            <div class="col-12 px-3 mt-3"> <!-- padding horizontal -->
+                <?php if (!empty($juego->descripcion)) : ?>
+                    <div class="card-text text-center">
+                        <h5>Descripción:</h5>
+                        <p><?= nl2br(htmlspecialchars($juego->descripcion)) ?></p>
+                    </div>
+                <?php else : ?>
+                    <p class="text-muted text-center">No hay descripción disponible.</p>
+                <?php endif; ?>
+            </div>
+
+
+                    <!-- Audio del juego -->
+
+
+                    <!-- Audio del juego -->
+<?php if (!empty($juego->audio_url)) : ?>
+    <div class="card-text mt-4 text-center">
+        <h5 class="mb-3">🎵 Escuchá el tema principal del juego</h5>
+        <div class="p-3 bg-light rounded-3 shadow-sm">
+            <audio controls class="w-100 rounded-3">
+                <source src="<?= BASE_URL . ltrim($juego->audio_url, './') ?>" type="audio/mpeg">
+                Tu navegador no soporta la reproducción de audio.
+            </audio>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if (empty($juego->audio_url)) : ?> 
+    <div>
+        <p>"NO TIENE UN AUDIO CARGADO"</p>
+    </div>
+<?php endif; ?>
+        </div>
+    </div>
+</section>

@@ -9,19 +9,35 @@
       <a href="<?php echo BASE_URL; ?>juegos" class="fw-bold">/juegos</a>
       <span class="d-block fs-6 text-muted">Listado completo de juegos</span>
     </li>
-
     <li>
-      <a href="<?php echo BASE_URL; ?>juegos/124" class="fw-bold">/juegos/&lt;id 124&gt;</a>
-      <span class="d-block fs-6 text-muted">Detalle de un juego específico</span>
+      <a href="<?php echo BASE_URL; ?>juegos-categoria/33" class="fw-bold">/juegos-categoria/33</a>
+      <span class="d-block fs-6 text-muted">Listado completo de juegos de categoria 33</span>
+    </li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>juegos-lista" class="fw-bold">/juegos-lista</a>
+      <span class="d-block fs-6 text-muted">Listado completo de juegos en formato de lista</span>
     </li>
      <li>
+      <a href="<?php echo BASE_URL; ?>juegos-lista/184" class="fw-bold">/juegos-lista/184</a>
+      <span class="d-block fs-6 text-muted">Mostrar un juego especifico de la lista</span>
+    </li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>juegos-lista-categoria/33" class="fw-bold">/juegos-lista-categoria/33</a>
+      <span class="d-block fs-6 text-muted">Listado completo de los juegos de la categoria 33 (LISTA)</span>
+    </li>
+    <li>
+      <a href="<?php echo BASE_URL; ?>juegos/159" class="fw-bold">/juegos/&lt;id 159&gt;</a>
+      <span class="d-block fs-6 text-muted">Detalle de un juego específico</span>
+    </li>
+    <li>
       <a href="<?php echo BASE_URL; ?>consolas" class="fw-bold">/consolas</a>
       <span class="d-block fs-6 text-muted">Listado completo de consolas</span>
     </li>
     <li>
-      <a href="<?php echo BASE_URL; ?>consolas/14" class="fw-bold">/consolas/&lt;id 14&gt;</a>
+      <a href="<?php echo BASE_URL; ?>consolas/33" class="fw-bold">/consolas/&lt;id 33&gt;</a>
       <span class="d-block fs-6 text-muted">Detalle de la consola de id 14</span>
     </li>
+
 
     <li>
       <a href="<?php echo BASE_URL; ?>login" class="fw-bold">/login</a>
@@ -29,10 +45,20 @@
     </li>
   </ul>
 
+  <div>
+    <h2>USUARIO DE PRUEBA</h2>
+    <ul>
+      <li>Usuario: webadmin</li>
+      <li>Contraseña: admin</li>
+    </ul>
+  </div>
+
   <!-- Aviso para usuarios logueados -->
   <div class="alert alert-warning mt-4" role="alert">
     ⚠️ Las siguientes rutas son de <strong>uso exclusivo para usuarios con sesión iniciada</strong>.
   </div>
+
+
 
   <ul class="list-unstyled">
 
@@ -42,24 +68,18 @@
       <a href="<?php echo BASE_URL; ?>agregar-juego" class="fw-bold">/agregar-juego</a>
       <span class="d-block fs-5 text-dark">Acceder al formulario para agregar un nuevo juego</span>
     </li>
+
     <li>
-    <li>
-      <a href="<?php echo BASE_URL; ?>agregar-nuevo-juego" class="fw-bold">/agregar-nuevo-juego</a>
-      <span class="d-block fs-5 text-dark">Esta será la url cuando se envie el form de agregar juego</span>
+      <a href="<?php echo BASE_URL; ?>eliminar-juego/133" class="fw-bold">/eliminar-juego/133</a>
+      <span class="d-block fs-5 text-dark">Eliminar el juego con ID 133</span>
     </li>
-    <li></li>
-    <a href="<?php echo BASE_URL; ?>eliminar-juego/133" class="fw-bold">/eliminar-juego/133</a>
-    <span class="d-block fs-5 text-dark">Eliminar el juego con ID 133</span>
-    </li>
+
     <li>
       <a href="<?php echo BASE_URL; ?>editar-juego/128" class="fw-bold">/editar-juego/128</a>
       <span class="d-block fs-5 text-dark">Acceder al formulario para editar el juego con ID 128</span>
     </li>
 
-    <li>
-      <a href="<?php echo BASE_URL; ?>juego-editado" class="fw-bold">/juego-editado</a>
-      <span class="d-block fs-5 text-dark">Esta será la url cuando se envie el form de editar juego</span>
-    </li>
+
 
 
     <li>
@@ -90,5 +110,5 @@
       <a href="<?php echo BASE_URL; ?>logout" class="fw-bold">/logout</a>
       <span class="d-block fs-6 text-muted">Logout para cerrar sesión</span>
     </li>
-    </ul>
+  </ul>
 </section>

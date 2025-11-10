@@ -13,35 +13,55 @@ class UserModel {
         );
         $this->_deploy();
     }
-    private function _deploy()
-    {
-        $query = $this->db->query('SHOW TABLES');
-        $tables = $query->fetchAll();
-        if (count($tables) == 0) {
-            $sql = <<<END
-        CREATE TABLE usuario (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            email VARCHAR(255) NOT NULL,
-            password VARCHAR(255) NOT NULL
-        );
+   private function _deploy()
+{
+    $query = $this->db->query('SHOW TABLES');
+    $tables = $query->fetchAll(PDO::FETCH_COLUMN);
 
-        CREATE TABLE consola (
+    // ---------------- Usuario ----------------
+    if (!in_array('usuario', $tables)) {
+        $sqlUsuario = "CREATE TABLE usuario (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            nombre VARCHAR(100) NOT NULL
-        );
+            nombre VARCHAR(255) NOT NULL,
+            passwordd VARCHAR(255) NOT NULL
+        ) ENGINE=InnoDB;";
+        $this->db->exec($sqlUsuario);
 
-        CREATE TABLE juego (
+        // Crear usuario por defecto
+        $nombreAdmin = 'webadmin';
+        $passwordAdmin = password_hash('admin', PASSWORD_DEFAULT);
+        $insertAdmin = $this->db->prepare("INSERT INTO usuario (nombre, passwordd) VALUES (?, ?)");
+        $insertAdmin->execute([$nombreAdmin, $passwordAdmin]);
+    }
+
+    // ---------------- Consola ----------------
+    if (!in_array('consola', $tables)) {
+        $sqlConsola = "CREATE TABLE consola (
             id INT AUTO_INCREMENT PRIMARY KEY,
             nombre VARCHAR(100) NOT NULL,
-            id_consola INT,
-            FOREIGN KEY (id_consola) REFERENCES consola(id)
-        );
-        END;
-
-            $this->db->exec($sql);
-        }
+            empresa VARCHAR(100) NOT NULL,
+            imagen VARCHAR(255)
+        ) ENGINE=InnoDB;";
+        $this->db->exec($sqlConsola);
     }
-    
+
+    // ---------------- Juego ----------------
+    if (!in_array('juego', $tables)) {
+        $sqlJuego = "CREATE TABLE juego (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            nombre VARCHAR(100) NOT NULL,
+            genero VARCHAR(100) NOT NULL,
+            descripcion TEXT,
+            imagen VARCHAR(255),
+            audio_url VARCHAR(255),
+            id_consola INT,
+            FOREIGN KEY (id_consola) REFERENCES consola(id) ON DELETE SET NULL
+        ) ENGINE=InnoDB;";
+        $this->db->exec($sqlJuego);
+    }
+}
+
+
   public function tieneUsuarioDB($userName) {
     $query = $this->db->prepare("SELECT nombre FROM usuario WHERE nombre =?");
      $query->execute([$userName]);
