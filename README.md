@@ -28,7 +28,7 @@ El sitio contendrá un catalogo videojuegos, donde cada juego va tener una categ
 #Diagrama de Entidad-Relación (DER): 
 -------------------------------------------------------
 El DER está en el archivo: 
-DiagramaOk.jpeg
+DIAGRAMADER-.jpeg
 ## 🎮 Diagrama de base de datos
 
  
