@@ -32,7 +32,7 @@ DIAGRAMADER-.jpeg
 ## 🎮 Diagrama de base de datos
 
  
-![Diagrama ER](./DIAGRAMADER-.jpeg)
+![Diagrama ER](./DIAGRAMADER.jpeg)
 
 Descripción general del DER:
 ----------------------------
